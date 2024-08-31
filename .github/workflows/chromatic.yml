@@ -14,7 +14,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Publish to Chromatic
+      # 기본적으로 프로젝트의 build:storybook 커맨드를 사용하여 스토리북을 빌드
         uses: chromaui/action@v1
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }} # https://www.chromatic.com/docs/github-actions/
-          onlyChanged: true # https://www.chromatic.com/docs/turbosnap/#turbosnap
+          # https://www.chromatic.com/docs/turbosnap/#turbosnap
+          # 변경이 존재하는 스냅샷만 촬영하여 빌드시간과 비용을 줄일수 있도록
+          onlyChanged: true
